@@ -268,7 +268,7 @@ export const getPostById = async (req: Request, res: Response) => {
         success: false,
       });
     }
-    
+
     // console.log("POSTIDBefore", postId);
     const response = await Post.findById(postId);
     if (!response) {
@@ -283,6 +283,8 @@ export const getPostById = async (req: Request, res: Response) => {
       success: true,
       post: response
     })
+
+    
   } catch (error) {
     return res.status(500).json({
       message: "Server error while getting post by id",
