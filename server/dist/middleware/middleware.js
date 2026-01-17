@@ -1,9 +1,7 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import type { NextFunction, Request, Response } from "express";
 dotenv.config();
-
-export const middleware = async (req: Request, res: Response, next: NextFunction) => {
+export const middleware = async (req, res, next) => {
     try {
         const { token } = req.cookies;
         if (!token) {
@@ -31,3 +29,4 @@ export const middleware = async (req: Request, res: Response, next: NextFunction
         });
     }
 };
+//# sourceMappingURL=middleware.js.map

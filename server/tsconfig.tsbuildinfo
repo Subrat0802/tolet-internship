@@ -1,1 +1,1 @@
-{"root":["./src/index.ts"],"version":"5.9.3"}
+{"root":["./src/index.ts","./src/config/db.ts","./src/controllers/auth.ts","./src/controllers/post.ts","./src/middleware/middleware.ts","./src/models/post.ts","./src/models/user.ts","./src/routes/authroute.ts","./src/routes/postroute.ts","./src/utils/authzodvalidation.ts","./src/utils/postzodvalidation.ts"],"version":"5.9.3"}

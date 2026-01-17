@@ -4,6 +4,8 @@ import User from "../models/user.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { success, ZodError } from "zod";
+import dotenv from "dotenv";
+dotenv.config()
 
 export const signup = async (req: Request, res: Response) => {
     try{
@@ -32,6 +34,12 @@ export const signup = async (req: Request, res: Response) => {
                 success:false
             })
         }
+
+
+        return res.status(200).json({
+            message:"User signup successfully",
+            success: true,
+        })
 
     }catch (err: unknown) {
         if (err instanceof ZodError) {
@@ -87,7 +95,8 @@ export const signin = async (req: Request, res: Response) => {
 
         return res.cookie("token", token, options).status(200).json({
             message:"User signin successfully",
-            success:true
+            success:true,
+            token
         })
 
     }catch (err: unknown) {
@@ -108,7 +117,7 @@ export const signin = async (req: Request, res: Response) => {
 }
 
 
-const me = async (req: Request, res: Response) => {
+export const me = async (req: Request, res: Response) => {
     try{
         //@ts-ignore
         const {id} = req.user;
