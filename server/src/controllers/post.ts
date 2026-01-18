@@ -11,7 +11,7 @@ export const createPost = async (req: Request, res: Response) => {
   try {
     //@ts-ignore
     const userId = req.user?.id;
-    const { title, content } = await postZodValidation.parseAsync(req.body);
+    const { title, content, image } = await postZodValidation.parseAsync(req.body);
 
     const findUser = await User.findById(userId);
     if (!findUser) {
@@ -24,6 +24,7 @@ export const createPost = async (req: Request, res: Response) => {
     const post = await Post.create({
       title,
       content,
+      imageUrl:image,
       user: userId,
     });
 
@@ -61,7 +62,7 @@ export const createPost = async (req: Request, res: Response) => {
 
 
 
-export const getAllPost = async (req: Request, res: Response) => {
+export const getUserAllPost = async (req: Request, res: Response) => {
   try {
     //@ts-ignore
     const userId = req.user?.id;
@@ -87,6 +88,34 @@ export const getAllPost = async (req: Request, res: Response) => {
       message: "All Posts",
       success: true,
       data: posts,
+    });
+  } catch (err: unknown) {
+      return res.status(500).json({
+        message: "Server error while getting all post",
+        success: false,
+      });
+  }
+};
+
+
+
+
+
+export const getAllPost = async (req: Request, res: Response) => {
+  try {
+    const posts = await Post.find();
+
+    if (!posts) {
+      return res.status(404).json({
+        message: "Error while fetching all posts, Try again",
+        success: false,
+      });
+    }
+
+    return res.status(200).json({
+      message: "All Posts",
+      success: true,
+      posts,
     });
   } catch (err: unknown) {
       return res.status(500).json({

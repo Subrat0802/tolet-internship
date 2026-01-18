@@ -9,7 +9,7 @@ export const createPost = async (req, res) => {
     try {
         //@ts-ignore
         const userId = req.user?.id;
-        const { title, content } = await postZodValidation.parseAsync(req.body);
+        const { title, content, image } = await postZodValidation.parseAsync(req.body);
         const findUser = await User.findById(userId);
         if (!findUser) {
             return res.status(404).json({
@@ -20,6 +20,7 @@ export const createPost = async (req, res) => {
         const post = await Post.create({
             title,
             content,
+            imageUrl: image,
             user: userId,
         });
         if (!post) {
@@ -51,7 +52,7 @@ export const createPost = async (req, res) => {
         }
     }
 };
-export const getAllPost = async (req, res) => {
+export const getUserAllPost = async (req, res) => {
     try {
         //@ts-ignore
         const userId = req.user?.id;
@@ -73,6 +74,28 @@ export const getAllPost = async (req, res) => {
             message: "All Posts",
             success: true,
             data: posts,
+        });
+    }
+    catch (err) {
+        return res.status(500).json({
+            message: "Server error while getting all post",
+            success: false,
+        });
+    }
+};
+export const getAllPost = async (req, res) => {
+    try {
+        const posts = await Post.find();
+        if (!posts) {
+            return res.status(404).json({
+                message: "Error while fetching all posts, Try again",
+                success: false,
+            });
+        }
+        return res.status(200).json({
+            message: "All Posts",
+            success: true,
+            posts,
         });
     }
     catch (err) {
@@ -219,6 +242,7 @@ export const getPostById = async (req, res) => {
                 success: false,
             });
         }
+        // console.log("POSTIDBefore", postId);
         const response = await Post.findById(postId);
         if (!response) {
             return res.status(404).json({
@@ -226,6 +250,7 @@ export const getPostById = async (req, res) => {
                 success: false,
             });
         }
+        // console.log("POSTIDBefore", postId);
         return res.status(200).json({
             message: "Post by id",
             success: true,
