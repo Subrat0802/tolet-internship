@@ -128,7 +128,7 @@ export const me = async (req: Request, res: Response) => {
             })
         }
 
-        const response = await User.findById({_id: id});
+        const response = await User.findById(id).select("-password");;
         if(!response){
             return res.status(404).json({
                 message:"User not found, Try to login again",
