@@ -19,8 +19,6 @@ npm install
 cd ../client
 npm install
 
-https://github.com/user-attachments/assets/ff7b0000-9d9d-47db-bea1-2897137b94ff
-
 
 ```
 
@@ -57,4 +55,11 @@ npm run dev
 The application will be available at `http://localhost:5173`
 
 
-### video link: https://github.com/user-attachments/assets/7e54bcda-60aa-4462-ae2c-d07f212fec37
+### video link: 
+    https://github.com/user-attachments/assets/7e54bcda-60aa-4462-ae2c-d07f212fec37
+
+
+
+
+### postman: 
+    https://blue-equinox-727602.postman.co/workspace/text~bee4dbd0-19a3-4290-9946-cbc471cc1847/collection/29820856-d2d18ddd-dd01-4816-99b3-8976a3eac16a?action=share&creator=29820856
