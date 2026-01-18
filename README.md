@@ -51,3 +51,6 @@ npm run dev
 ```
 
 The application will be available at `http://localhost:5173`
+
+
+### video link: https://github.com/user-attachments/assets/7e54bcda-60aa-4462-ae2c-d07f212fec37
