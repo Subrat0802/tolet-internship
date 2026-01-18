@@ -18,6 +18,10 @@ npm install
 ```bash
 cd ../client
 npm install
+
+https://github.com/user-attachments/assets/ff7b0000-9d9d-47db-bea1-2897137b94ff
+
+
 ```
 
 ### 4. Setup Environment Variables
