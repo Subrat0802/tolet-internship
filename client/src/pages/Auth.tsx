@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import Button from "../components/ui/Button";
-import { signInAuth, signupAuth } from "../services/operations/auth";
+import { me, signInAuth, signupAuth } from "../services/operations/auth";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 
@@ -27,6 +27,8 @@ const Auth = () => {
     }else{
         const repsosne = await signInAuth({email, password});
         if(repsosne !== 200) return;
+        const resp = await me();
+        sessionStorage.setItem("user", JSON.stringify(resp));
         toast.success("User Signin successfully");
         navigate("/profile")
     }

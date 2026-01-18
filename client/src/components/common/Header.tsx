@@ -4,6 +4,8 @@ import { Link } from "react-router-dom"
 
 
 const Header = () => {
+    const user = sessionStorage.getItem("user");
+    console.log(user);
   return (
     <div className="w-full bg-neutral-50 shadow-md py-4 top-0 fixed">
         <div className="max-w-7xl  mx-auto flex justify-between ">
@@ -13,7 +15,9 @@ const Header = () => {
             </div>
             <div className="gap-3 flex justify-center items-center">
 
-                <Link to="auth"><Button text="Signin" style="primary"/></Link>
+                {user ? <Button text="Logout" style={"primary"} onClick={() => {
+                    sessionStorage.setItem("user", "");
+                }}/> : <Link to="auth"><Button text="Signin" style="primary"/></Link>}
             </div>
         </div>
         
