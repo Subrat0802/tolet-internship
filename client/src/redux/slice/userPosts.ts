@@ -1,6 +1,7 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
-export interface postsData {
+
+interface UserPosts {
     _id: string,
     title: string,
     content: string,
@@ -9,20 +10,18 @@ export interface postsData {
     updatedAt: Date
     user: string
 }
+const initialState: UserPosts[] = [];
 
-
-const initialState: postsData[] = [];
-
-const postsSlice = createSlice({
+const userPostsSlice = createSlice({
     name:"posts",
     initialState,
     reducers: {
-        setPosts(_state, action: PayloadAction<postsData[]>) {
+        setUserPosts(_state, action: PayloadAction<UserPosts[]>) {
             return action.payload
         }
     }
 })
 
-export const {setPosts} = postsSlice.actions;
-export default postsSlice.reducer;
+export const {setUserPosts} = userPostsSlice.actions;
+export default userPostsSlice.reducer;
 

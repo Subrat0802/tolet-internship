@@ -1,8 +1,10 @@
+import { Outlet } from "react-router-dom"
+
 
 const Profile = () => {
-  return (
-    <div>Profile</div>
-  )
+    return <>
+      <Outlet />
+    </>
 }
 
 export default Profile

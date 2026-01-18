@@ -3,7 +3,8 @@ import { postEndpoint } from "../api"
 import { apiConnector } from "../apiConnect";
 
 // const {SIGNIN, SIGNUP, ME} = authEndpoint;
-const { getAllPost } = postEndpoint;
+const { getAllPost, getUserAllPost } = postEndpoint; // createPost, updatePost, getPostById, deletePost,
+
 
 
 export const fetchAllPost = async () => {
@@ -15,5 +16,20 @@ export const fetchAllPost = async () => {
     }catch(error){
         console.log(error);
         toast.error("Server Erorr while fetching all posts")
+    }
+}
+
+
+
+export const fetchUserPost = async () => {
+    try{
+        const resposne = await apiConnector("GET", getUserAllPost)
+        console.log(resposne);
+        if(!resposne.data.success) toast.error("Something went wrong while Fething the user all posts");
+        return resposne.data.data
+        
+    }catch(error){
+        console.log(error);
+        toast.error("Server Erorr while fetching all user posts")
     }
 }

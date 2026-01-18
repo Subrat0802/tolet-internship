@@ -8,7 +8,7 @@ interface PropInfo {
 
 const cstyle = {
         primary:"px-4 py-3 transition-all text-center duration-200 hover:scale-95 cursor-pointer  text-white text-black rounded-xl   bg-sky-600",
-        secondary:"p-2 py-3  text-black rounded-xl   bg-green-600"
+        secondary:"p-2 py-3  text-black rounded-xl duration-200 hover:scale-95 cursor-pointer hover:text-gray-600"
     };
 
 

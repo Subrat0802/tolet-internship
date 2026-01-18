@@ -3,6 +3,8 @@ import Button from "../components/ui/Button";
 import { me, signInAuth, signupAuth } from "../services/operations/auth";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setUser } from "../redux/slice/userSlice";
 
 const Auth = () => {
   const [signup, setSignup] = useState(true);
@@ -12,6 +14,7 @@ const Auth = () => {
   const lastNameRef = useRef<HTMLInputElement>(null);
 
   const navigate = useNavigate();
+  const dipatch = useDispatch();
 
   const authHandler = async () => {
     const email = emailRef.current?.value as string;
@@ -27,8 +30,9 @@ const Auth = () => {
     }else{
         const repsosne = await signInAuth({email, password});
         if(repsosne !== 200) return;
+
         const resp = await me();
-        sessionStorage.setItem("user", JSON.stringify(resp));
+        dipatch(setUser(resp?.data.user));
         toast.success("User Signin successfully");
         navigate("/profile")
     }
@@ -75,7 +79,7 @@ const Auth = () => {
         >
           {signup ? "Already have an account?" : "Don't have account?"}{" "}
           <span className="group-hover:text-sky-700">
-            {signup ? "signup" : "signin"}
+            {!signup ? "signup" : "signin"}
           </span>
         </p>
       </div>

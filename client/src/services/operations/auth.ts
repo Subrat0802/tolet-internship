@@ -35,7 +35,6 @@ export const signInAuth = async ({email, password}: SignupProp) => {
 export const me = async () => {
     try{
         const response = await apiConnector("GET", ME);
-        console.log("ME ROUTE", response);
         return response;
     }catch(error){
         console.log("Error ME ROUTE", error)

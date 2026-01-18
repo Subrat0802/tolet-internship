@@ -1,11 +1,22 @@
 import { ArrowBigLeftDashIcon } from "lucide-react"
 import Button from "../ui/Button"
 import { Link } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "../../main";
+import { clearUser } from "../../redux/slice/userSlice";
+import { toast } from "sonner";
 
 
 const Header = () => {
-    const user = sessionStorage.getItem("user");
-    console.log(user);
+    const dispatch = useDispatch();
+    const user = useSelector((state: RootState) => state.userState);
+
+    const handleLogout = () => {
+        dispatch(clearUser())
+        sessionStorage.setItem("user", "");
+        toast.success("User logged out!")
+    }
+
   return (
     <div className="w-full bg-neutral-50 shadow-md py-4 top-0 fixed">
         <div className="max-w-7xl  mx-auto flex justify-between ">
@@ -15,9 +26,12 @@ const Header = () => {
             </div>
             <div className="gap-3 flex justify-center items-center">
 
-                {user ? <Button text="Logout" style={"primary"} onClick={() => {
-                    sessionStorage.setItem("user", "");
-                }}/> : <Link to="auth"><Button text="Signin" style="primary"/></Link>}
+
+                {user ? <div className="flex gap-4">
+                    <Link to={"/profile/publicposts"}><Button text="Public Posts" style="secondary"/></Link>
+                    <Link to={"/profile/userposts"}><Button text="Your Posts" style="secondary"/></Link>
+                    <Button onClick={handleLogout} text="logout" style="primary"/>
+                </div> : <Link to="auth"><Button text="Signin" style="primary"/></Link>}
             </div>
         </div>
         

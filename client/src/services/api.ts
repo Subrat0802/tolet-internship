@@ -12,5 +12,6 @@ export const postEndpoint = {
     updatePost: BASE_URL + "/api/v1/post/updatePost",
     getPostById: BASE_URL + "/api/v1/post/getPostById",
     deletePost: BASE_URL + "/api/v1/post/deletePost",
+    getUserAllPost: BASE_URL + "/api/v1/post/getUserAllPost",
 } 
 
