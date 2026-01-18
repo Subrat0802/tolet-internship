@@ -34,7 +34,7 @@ const Auth = () => {
         const resp = await me();
         dipatch(setUser(resp?.data.user));
         toast.success("User Signin successfully");
-        navigate("/profile")
+        navigate("/profile/publicposts")
     }
   };
 
